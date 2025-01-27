@@ -1,12 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>12Bweboldal</title>
-</head>
-<body>
-        <h1>12b masodik weboldala elsö a google site volt</h1>
-</body>
-</html>
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+
+const HomePage = () => {
+  return (
+    <div className="min-h-screen bg-gray-100 p-4">
+      <header className="flex items-center justify-between bg-white p-6 shadow-md rounded-2xl">
+        <h1 className="text-2xl font-bold text-gray-800">Üdvözlünk a Fabrik Játékok világában!</h1>
+        <Button className="bg-blue-600 text-white hover:bg-blue-700">Kapcsolat</Button>
+      </header>
+
+      <main className="my-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[...Array(15)].map((_, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
+          >
+            <Card className="shadow-md hover:shadow-lg transition-all rounded-2xl">
+              <CardContent className="p-4">
+                <h2 className="text-xl font-semibold">Játék {index + 1}</h2>
+                <p className="text-gray-600 my-2">
+                  Kiváló minőségű fa játék 3-12 éves gyerekeknek. Tökéletes választás karácsonyra!
+                </p>
+                <Button className="bg-green-600 text-white hover:bg-green-700 w-full mt-2">
+                  Részletek
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </main>
+
+      <footer className="bg-white p-6 shadow-md rounded-2xl mt-8 text-center">
+        <p className="text-gray-700">© 2025 Fabrik Játékok - Minden jog fenntartva.</p>
+      </footer>
+    </div>
+  );
+};
+
+export default HomePage;
